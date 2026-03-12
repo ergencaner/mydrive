@@ -41,7 +41,6 @@
       top: 0;
       z-index: 100;
     }
-
     .logo {
       display: flex;
       align-items: center;
@@ -51,9 +50,7 @@
       letter-spacing: -0.5px;
     }
     .logo svg { color: var(--accent); }
-
     .header-actions { display: flex; gap: 10px; align-items: center; }
-
     .view-toggle {
       display: flex;
       background: var(--surface2);
@@ -74,19 +71,49 @@
     }
     .view-btn.active { background: var(--accent); color: white; }
 
-    /* ── Main Layout ── */
-    main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+    /* ── Main ── */
+    main { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.9rem;
+    }
+    .breadcrumb-link {
+      color: var(--accent);
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 6px;
+      transition: background 0.15s;
+      font-weight: 500;
+    }
+    .breadcrumb-link:hover { background: rgba(91,106,245,0.15); }
+    .breadcrumb-current {
+      color: var(--text);
+      font-weight: 600;
+      padding: 2px 6px;
+    }
+    .breadcrumb-sep { color: var(--text-muted); font-size: 0.8rem; }
 
     /* ── Upload Zone ── */
     .upload-zone {
       border: 2px dashed var(--border);
       border-radius: var(--radius);
-      padding: 48px 24px;
+      padding: 40px 24px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s;
       background: var(--surface);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       position: relative;
     }
     .upload-zone:hover, .upload-zone.drag-over {
@@ -101,12 +128,13 @@
       width: 100%;
       height: 100%;
     }
-    .upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
-    .upload-zone h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
-    .upload-zone p { color: var(--text-muted); font-size: 0.88rem; }
+    .upload-icon { font-size: 2.2rem; margin-bottom: 10px; }
+    .upload-zone h2 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+    .upload-zone p { color: var(--text-muted); font-size: 0.85rem; }
+    .upload-dest { color: var(--accent); font-weight: 600; }
 
-    /* ── Progress List ── */
-    #progress-list { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+    /* ── Progress ── */
+    #progress-list { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
     .progress-item {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -117,42 +145,22 @@
       gap: 12px;
     }
     .progress-item .file-name { flex: 1; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .progress-bar-wrap {
-      flex: 2;
-      background: var(--surface2);
-      border-radius: 99px;
-      height: 6px;
-      overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 99px;
-      transition: width 0.2s;
-      width: 0%;
-    }
+    .progress-bar-wrap { flex: 2; background: var(--surface2); border-radius: 99px; height: 6px; overflow: hidden; }
+    .progress-bar { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.2s; width: 0%; }
     .progress-item .status { font-size: 0.8rem; color: var(--text-muted); min-width: 40px; text-align: right; }
 
-    /* ── Filters & Search ── */
+    /* ── Toolbar ── */
     .toolbar {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 18px;
       flex-wrap: wrap;
     }
-    .search-wrap {
-      flex: 1;
-      min-width: 200px;
-      position: relative;
-    }
+    .search-wrap { flex: 1; min-width: 180px; position: relative; }
     .search-wrap svg {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); pointer-events: none;
     }
     .search-input {
       width: 100%;
@@ -166,7 +174,6 @@
       transition: border-color 0.15s;
     }
     .search-input:focus { border-color: var(--accent); }
-
     .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
     .filter-btn {
       background: var(--surface);
@@ -179,26 +186,17 @@
       transition: all 0.15s;
       white-space: nowrap;
     }
-    .filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
-    }
+    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
 
-    /* ── File Stats ── */
-    .stats {
-      color: var(--text-muted);
-      font-size: 0.83rem;
-      margin-bottom: 16px;
-    }
+    /* ── Stats ── */
+    .stats { color: var(--text-muted); font-size: 0.83rem; margin-bottom: 16px; }
 
     /* ── Grid View ── */
     .file-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
     }
-
     .file-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -209,47 +207,17 @@
       position: relative;
     }
     .file-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-
-    .card-preview {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      display: block;
-      background: var(--surface2);
-    }
+    .card-preview { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; background: var(--surface2); }
     .card-icon-wrap {
-      width: 100%;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--surface2);
-      font-size: 3rem;
+      width: 100%; aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface2); font-size: 2.8rem;
     }
-
-    .card-info {
-      padding: 10px 12px;
-    }
-    .card-name {
-      font-size: 0.82rem;
-      font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 3px;
-    }
-    .card-meta {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .card-actions {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      display: none;
-      gap: 6px;
-    }
+    .folder-card .card-icon-wrap { background: rgba(91,106,245,0.08); }
+    .card-info { padding: 10px 12px; }
+    .card-name { font-size: 0.82rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+    .card-meta { font-size: 0.75rem; color: var(--text-muted); }
+    .card-actions { position: absolute; top: 8px; right: 8px; display: none; gap: 6px; }
     .file-card:hover .card-actions { display: flex; }
 
     /* ── List View ── */
@@ -258,7 +226,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 12px 16px;
+      padding: 11px 16px;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -266,14 +234,9 @@
       transition: all 0.15s;
     }
     .file-row:hover { border-color: var(--accent); }
-    .row-icon { font-size: 1.5rem; flex-shrink: 0; width: 36px; text-align: center; }
-    .row-thumb {
-      width: 36px;
-      height: 36px;
-      object-fit: cover;
-      border-radius: 6px;
-      flex-shrink: 0;
-    }
+    .folder-row { border-left: 2px solid rgba(91,106,245,0.4); }
+    .row-icon { font-size: 1.4rem; flex-shrink: 0; width: 32px; text-align: center; }
+    .row-thumb { width: 32px; height: 32px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
     .row-name { flex: 1; font-size: 0.9rem; font-weight: 500; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .row-type { color: var(--text-muted); font-size: 0.8rem; min-width: 80px; }
     .row-size { color: var(--text-muted); font-size: 0.8rem; min-width: 70px; text-align: right; }
@@ -283,16 +246,9 @@
 
     /* ── Buttons ── */
     .btn {
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.82rem;
-      padding: 6px 12px;
-      transition: all 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-weight: 500;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-size: 0.82rem; padding: 6px 12px; transition: all 0.15s;
+      display: inline-flex; align-items: center; gap: 5px; font-weight: 500;
     }
     .btn-primary { background: var(--accent); color: white; }
     .btn-primary:hover { background: var(--accent-hover); }
@@ -302,45 +258,61 @@
     .btn-danger:hover { background: rgba(224,82,82,0.28); }
     .btn-sm { padding: 5px 10px; font-size: 0.78rem; border-radius: 6px; }
 
-    /* ── Modal ── */
+    /* ── New Folder Dialog ── */
+    .dialog-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 300;
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .dialog-overlay.open { display: flex; }
+    .dialog {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      width: 100%; max-width: 380px;
+    }
+    .dialog h3 { font-size: 1rem; margin-bottom: 16px; }
+    .dialog input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      outline: none;
+      margin-bottom: 16px;
+      transition: border-color 0.15s;
+    }
+    .dialog input:focus { border-color: var(--accent); }
+    .dialog-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+    /* ── Preview Modal ── */
     .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75); z-index: 200;
+      align-items: center; justify-content: center; padding: 20px;
     }
     .modal-overlay.open { display: flex; }
     .modal {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      max-width: 90vw;
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      width: 800px;
+      max-width: 90vw; max-height: 90vh;
+      display: flex; flex-direction: column;
+      overflow: hidden; width: 800px;
     }
     .modal-header {
       padding: 16px 20px;
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      display: flex; align-items: center; gap: 12px;
     }
     .modal-title { flex: 1; font-size: 0.95rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .modal-body {
-      flex: 1;
-      overflow: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      min-height: 200px;
+      flex: 1; overflow: auto;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; min-height: 200px;
     }
     .modal-body img { max-width: 100%; max-height: 70vh; border-radius: 8px; }
     .modal-body video { max-width: 100%; max-height: 70vh; border-radius: 8px; }
@@ -349,50 +321,34 @@
     .modal-footer {
       padding: 14px 20px;
       border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
+      display: flex; justify-content: flex-end; gap: 10px;
     }
 
-    /* ── Empty State ── */
-    .empty {
-      text-align: center;
-      padding: 64px 24px;
-      color: var(--text-muted);
-    }
-    .empty-icon { font-size: 3.5rem; margin-bottom: 16px; }
-    .empty h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text); }
+    /* ── Empty ── */
+    .empty { text-align: center; padding: 56px 24px; color: var(--text-muted); }
+    .empty-icon { font-size: 3.5rem; margin-bottom: 14px; }
+    .empty h3 { font-size: 1rem; margin-bottom: 8px; color: var(--text); }
 
     /* ── Toast ── */
     #toast-container {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      z-index: 300;
+      position: fixed; bottom: 24px; right: 24px;
+      display: flex; flex-direction: column; gap: 8px; z-index: 400;
     }
     .toast {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 18px;
-      font-size: 0.88rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 18px; font-size: 0.88rem;
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
       animation: slideIn 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
     }
     .toast.success { border-left: 3px solid var(--success); }
-    .toast.error { border-left: 3px solid var(--danger); }
+    .toast.error   { border-left: 3px solid var(--danger); }
     @keyframes slideIn { from { transform: translateX(40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
-      main { padding: 20px 16px; }
-      .file-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+      main { padding: 16px; }
+      .file-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
       .row-type, .row-date { display: none; }
       header { padding: 0 16px; }
     }
@@ -403,7 +359,8 @@
 <header>
   <div class="logo">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+      <ellipse cx="12" cy="5" rx="9" ry="3"/>
+      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
       <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
     </svg>
     MyDrive
@@ -421,12 +378,15 @@
 </header>
 
 <main>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" id="breadcrumb"></nav>
+
   <!-- Upload Zone -->
   <div class="upload-zone" id="upload-zone">
     <input type="file" id="file-input" multiple accept="*/*" />
     <div class="upload-icon">☁️</div>
     <h2>Drop files here or tap to browse</h2>
-    <p>Photos, videos, documents — any file up to 5 GB</p>
+    <p>Uploading to: <span class="upload-dest" id="upload-dest">Home</span></p>
   </div>
 
   <!-- Upload Progress -->
@@ -436,22 +396,37 @@
   <div class="toolbar">
     <div class="search-wrap">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" class="search-input" id="search" placeholder="Search files..." oninput="render()" />
+      <input type="text" class="search-input" id="search" placeholder="Search in this folder..." oninput="render()" />
     </div>
+    <button class="btn btn-ghost" onclick="openNewFolderDialog()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+      New Folder
+    </button>
     <div class="filter-btns">
-      <button class="filter-btn active" data-filter="all" onclick="setFilter(this,'all')">All</button>
-      <button class="filter-btn" data-filter="image" onclick="setFilter(this,'image')">📷 Images</button>
-      <button class="filter-btn" data-filter="video" onclick="setFilter(this,'video')">🎬 Videos</button>
-      <button class="filter-btn" data-filter="audio" onclick="setFilter(this,'audio')">🎵 Audio</button>
-      <button class="filter-btn" data-filter="other" onclick="setFilter(this,'other')">📄 Other</button>
+      <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+      <button class="filter-btn" onclick="setFilter(this,'image')">📷 Images</button>
+      <button class="filter-btn" onclick="setFilter(this,'video')">🎬 Videos</button>
+      <button class="filter-btn" onclick="setFilter(this,'audio')">🎵 Audio</button>
+      <button class="filter-btn" onclick="setFilter(this,'other')">📄 Other</button>
     </div>
   </div>
 
   <div class="stats" id="stats"></div>
-
-  <!-- File Display -->
   <div id="files-container"></div>
 </main>
+
+<!-- New Folder Dialog -->
+<div class="dialog-overlay" id="folder-dialog" onclick="closeFolderDialog(event)">
+  <div class="dialog">
+    <h3>📁 New Folder</h3>
+    <input type="text" id="folder-name-input" placeholder="Folder name" maxlength="100"
+      onkeydown="if(event.key==='Enter') confirmNewFolder(); if(event.key==='Escape') closeFolderDialogDirect();" />
+    <div class="dialog-actions">
+      <button class="btn btn-ghost" onclick="closeFolderDialogDirect()">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmNewFolder()">Create</button>
+    </div>
+  </div>
+</div>
 
 <!-- Preview Modal -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
@@ -468,63 +443,127 @@
   </div>
 </div>
 
-<!-- Toast Container -->
 <div id="toast-container"></div>
 
 <script>
-  let files = [];
+  // ── State ──
+  let entries = { folders: [], files: [] };
+  let currentFolder = []; // path segments, e.g. ['Photos', 'Vacation']
   let currentFilter = 'all';
   let currentView = 'grid';
   let activeFile = null;
 
+  function folderPath() { return currentFolder.join('/'); }
+
   // ── Boot ──
-  loadFiles();
+  loadEntries();
 
   // ── Drag & Drop ──
   const zone = document.getElementById('upload-zone');
   const fileInput = document.getElementById('file-input');
-
   zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
   zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault();
-    zone.classList.remove('drag-over');
-    uploadFiles(e.dataTransfer.files);
-  });
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); uploadFiles(e.dataTransfer.files); });
   fileInput.addEventListener('change', () => uploadFiles(fileInput.files));
+
+  // ── Load ──
+  async function loadEntries() {
+    try {
+      const fp = folderPath();
+      const res = await fetch('/api/files' + (fp ? `?folder=${encodeURIComponent(fp)}` : ''));
+      const data = await res.json();
+      entries = { folders: data.folders || [], files: data.files || [] };
+      renderBreadcrumb();
+      updateUploadDest();
+      render();
+    } catch {
+      toast('Failed to load files', 'error');
+    }
+  }
+
+  // ── Navigate ──
+  function navigateTo(segments) {
+    currentFolder = segments;
+    document.getElementById('search').value = '';
+    currentFilter = 'all';
+    document.querySelectorAll('.filter-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+    loadEntries();
+  }
+
+  function enterFolder(name) { navigateTo([...currentFolder, name]); }
+  function goToSegment(idx)  { navigateTo(currentFolder.slice(0, idx + 1)); }
+  function goHome()          { navigateTo([]); }
+
+  // ── Breadcrumb ──
+  function renderBreadcrumb() {
+    const nav = document.getElementById('breadcrumb');
+    nav.innerHTML = '';
+
+    const addSep = () => {
+      const s = document.createElement('span');
+      s.className = 'breadcrumb-item';
+      s.innerHTML = '<span class="breadcrumb-sep">›</span>';
+      nav.appendChild(s);
+    };
+
+    // Home
+    const home = document.createElement('span');
+    home.className = 'breadcrumb-item';
+    if (currentFolder.length === 0) {
+      home.innerHTML = '<span class="breadcrumb-current">🏠 MyDrive</span>';
+    } else {
+      home.innerHTML = '<span class="breadcrumb-link" onclick="goHome()">🏠 MyDrive</span>';
+    }
+    nav.appendChild(home);
+
+    currentFolder.forEach((seg, i) => {
+      addSep();
+      const item = document.createElement('span');
+      item.className = 'breadcrumb-item';
+      if (i === currentFolder.length - 1) {
+        item.innerHTML = `<span class="breadcrumb-current">${escHtml(seg)}</span>`;
+      } else {
+        item.innerHTML = `<span class="breadcrumb-link" onclick="goToSegment(${i})">${escHtml(seg)}</span>`;
+      }
+      nav.appendChild(item);
+    });
+  }
+
+  function updateUploadDest() {
+    const dest = document.getElementById('upload-dest');
+    dest.textContent = currentFolder.length === 0 ? 'Home' : currentFolder.join(' / ');
+  }
 
   // ── Upload ──
   async function uploadFiles(fileList) {
     if (!fileList || fileList.length === 0) return;
     const progressList = document.getElementById('progress-list');
+    const fp = folderPath();
 
     for (const file of fileList) {
       const item = document.createElement('div');
       item.className = 'progress-item';
+      const safeKey = encodeURIComponent(file.name + Date.now());
       item.innerHTML = `
         <span class="file-name">${escHtml(file.name)}</span>
-        <div class="progress-bar-wrap"><div class="progress-bar" id="pb-${encodeURIComponent(file.name)}"></div></div>
-        <span class="status" id="st-${encodeURIComponent(file.name)}">0%</span>
+        <div class="progress-bar-wrap"><div class="progress-bar" id="pb-${safeKey}"></div></div>
+        <span class="status" id="st-${safeKey}">0%</span>
       `;
       progressList.appendChild(item);
-
-      await uploadSingle(file, item);
+      await uploadSingle(file, item, safeKey, fp);
     }
-
-    // Reset input so same file can be uploaded again
     fileInput.value = '';
-    await loadFiles();
+    await loadEntries();
   }
 
-  function uploadSingle(file, itemEl) {
+  function uploadSingle(file, itemEl, safeKey, fp) {
     return new Promise(resolve => {
       const form = new FormData();
       form.append('files', file);
-
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', '/api/upload');
+      const url = '/api/upload' + (fp ? `?folder=${encodeURIComponent(fp)}` : '');
+      xhr.open('POST', url);
 
-      const safeKey = encodeURIComponent(file.name);
       const bar = document.getElementById(`pb-${safeKey}`);
       const status = document.getElementById(`st-${safeKey}`);
 
@@ -535,7 +574,6 @@
           if (status) status.textContent = pct + '%';
         }
       };
-
       xhr.onload = () => {
         if (xhr.status === 200) {
           if (status) { status.textContent = '✓'; status.style.color = 'var(--success)'; }
@@ -548,26 +586,42 @@
         setTimeout(() => itemEl.remove(), 2500);
         resolve();
       };
-
-      xhr.onerror = () => {
-        toast('Upload error: ' + file.name, 'error');
-        setTimeout(() => itemEl.remove(), 2500);
-        resolve();
-      };
-
+      xhr.onerror = () => { toast('Upload error: ' + file.name, 'error'); setTimeout(() => itemEl.remove(), 2500); resolve(); };
       xhr.send(form);
     });
   }
 
-  // ── Load Files ──
-  async function loadFiles() {
+  // ── New Folder ──
+  function openNewFolderDialog() {
+    document.getElementById('folder-name-input').value = '';
+    document.getElementById('folder-dialog').classList.add('open');
+    setTimeout(() => document.getElementById('folder-name-input').focus(), 50);
+  }
+  function closeFolderDialog(e) {
+    if (e.target === document.getElementById('folder-dialog')) closeFolderDialogDirect();
+  }
+  function closeFolderDialogDirect() {
+    document.getElementById('folder-dialog').classList.remove('open');
+  }
+  async function confirmNewFolder() {
+    const name = document.getElementById('folder-name-input').value.trim();
+    if (!name) return;
+    closeFolderDialogDirect();
     try {
-      const res = await fetch('/api/files');
+      const res = await fetch('/api/folders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, parent: folderPath() })
+      });
       const data = await res.json();
-      files = data.files || [];
-      render();
+      if (res.ok) {
+        toast('Folder created: ' + name, 'success');
+        await loadEntries();
+      } else {
+        toast(data.error || 'Failed to create folder', 'error');
+      }
     } catch {
-      toast('Failed to load files', 'error');
+      toast('Failed to create folder', 'error');
     }
   }
 
@@ -577,45 +631,87 @@
     const container = document.getElementById('files-container');
     const statsEl = document.getElementById('stats');
 
-    let filtered = files.filter(f => {
-      const matchFilter = currentFilter === 'all' || f.type === currentFilter || (currentFilter === 'other' && !['image','video','audio'].includes(f.type));
-      const matchSearch = f.name.toLowerCase().includes(query);
-      return matchFilter && matchSearch;
+    // Filter folders by search only (not by file-type filter)
+    const filteredFolders = currentFilter === 'all'
+      ? entries.folders.filter(f => f.name.toLowerCase().includes(query))
+      : [];
+
+    const filteredFiles = entries.files.filter(f => {
+      const matchFilter = currentFilter === 'all' || f.type === currentFilter ||
+        (currentFilter === 'other' && !['image','video','audio'].includes(f.type));
+      return matchFilter && f.name.toLowerCase().includes(query);
     });
 
-    statsEl.textContent = `${filtered.length} file${filtered.length !== 1 ? 's' : ''} · ${formatSize(filtered.reduce((s, f) => s + f.size, 0))}`;
+    const totalSize = filteredFiles.reduce((s, f) => s + f.size, 0);
+    const parts = [];
+    if (filteredFolders.length) parts.push(`${filteredFolders.length} folder${filteredFolders.length !== 1 ? 's' : ''}`);
+    if (filteredFiles.length || !filteredFolders.length) parts.push(`${filteredFiles.length} file${filteredFiles.length !== 1 ? 's' : ''}`);
+    statsEl.textContent = parts.join(' · ') + (filteredFiles.length ? ` · ${formatSize(totalSize)}` : '');
 
-    if (filtered.length === 0) {
-      container.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><h3>No files found</h3><p>${query || currentFilter !== 'all' ? 'Try a different search or filter.' : 'Upload your first file above!'}</p></div>`;
+    if (filteredFolders.length === 0 && filteredFiles.length === 0) {
+      container.innerHTML = `<div class="empty"><div class="empty-icon">${currentFolder.length ? '📂' : '📭'}</div><h3>No files found</h3><p>${query || currentFilter !== 'all' ? 'Try a different search or filter.' : 'Upload files or create a folder above!'}</p></div>`;
       return;
     }
 
+    container.innerHTML = '';
+
     if (currentView === 'grid') {
-      container.innerHTML = '';
       const grid = document.createElement('div');
       grid.className = 'file-grid';
-      filtered.forEach(f => grid.appendChild(makeCard(f)));
+      filteredFolders.forEach(f => grid.appendChild(makeFolderCard(f)));
+      filteredFiles.forEach(f => grid.appendChild(makeFileCard(f)));
       container.appendChild(grid);
     } else {
-      container.innerHTML = '';
       const list = document.createElement('div');
       list.className = 'file-list';
-      filtered.forEach(f => list.appendChild(makeRow(f)));
+      filteredFolders.forEach(f => list.appendChild(makeFolderRow(f)));
+      filteredFiles.forEach(f => list.appendChild(makeFileRow(f)));
       container.appendChild(list);
     }
   }
 
-  function makeCard(f) {
+  // ── Folder Cards/Rows ──
+  function makeFolderCard(f) {
+    const card = document.createElement('div');
+    card.className = 'file-card folder-card';
+    card.innerHTML = `
+      <div class="card-icon-wrap">📁</div>
+      <div class="card-info">
+        <div class="card-name" title="${escHtml(f.name)}">${escHtml(f.name)}</div>
+        <div class="card-meta">Folder</div>
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-danger btn-sm" onclick="event.stopPropagation(); deleteFolder('${escJs(f.name)}')" title="Delete">🗑</button>
+      </div>
+    `;
+    card.onclick = () => enterFolder(f.name);
+    return card;
+  }
+
+  function makeFolderRow(f) {
+    const row = document.createElement('div');
+    row.className = 'file-row folder-row';
+    row.innerHTML = `
+      <div class="row-icon">📁</div>
+      <span class="row-name" title="${escHtml(f.name)}">${escHtml(f.name)}</span>
+      <span class="row-type">Folder</span>
+      <span class="row-size">—</span>
+      <span class="row-date">${formatDate(f.mtime)}</span>
+      <div class="row-actions">
+        <button class="btn btn-danger btn-sm" onclick="event.stopPropagation(); deleteFolder('${escJs(f.name)}')" title="Delete">🗑</button>
+      </div>
+    `;
+    row.onclick = () => enterFolder(f.name);
+    return row;
+  }
+
+  // ── File Cards/Rows ──
+  function makeFileCard(f) {
     const card = document.createElement('div');
     card.className = 'file-card';
-
-    let preview = '';
-    if (f.type === 'image') {
-      preview = `<img class="card-preview" src="/api/preview/${encodeURIComponent(f.name)}" loading="lazy" alt="${escHtml(f.name)}" />`;
-    } else {
-      preview = `<div class="card-icon-wrap">${fileIcon(f)}</div>`;
-    }
-
+    const preview = f.type === 'image'
+      ? `<img class="card-preview" src="${previewUrl(f.name)}" loading="lazy" alt="${escHtml(f.name)}" />`
+      : `<div class="card-icon-wrap">${fileIcon(f)}</div>`;
     card.innerHTML = `
       ${preview}
       <div class="card-info">
@@ -631,14 +727,12 @@
     return card;
   }
 
-  function makeRow(f) {
+  function makeFileRow(f) {
     const row = document.createElement('div');
     row.className = 'file-row';
-
     const thumb = f.type === 'image'
-      ? `<img class="row-thumb" src="/api/preview/${encodeURIComponent(f.name)}" loading="lazy" alt="" />`
+      ? `<img class="row-thumb" src="${previewUrl(f.name)}" loading="lazy" alt="" />`
       : `<div class="row-icon">${fileIcon(f)}</div>`;
-
     row.innerHTML = `
       ${thumb}
       <span class="row-name" title="${escHtml(f.name)}">${escHtml(f.name)}</span>
@@ -654,62 +748,69 @@
     return row;
   }
 
-  // ── Preview Modal ──
+  // ── Preview ──
   function openPreview(f) {
     activeFile = f;
     document.getElementById('modal-title').textContent = f.name;
     const body = document.getElementById('modal-body');
-    const url = `/api/preview/${encodeURIComponent(f.name)}`;
+    const url = previewUrl(f.name);
 
-    if (f.type === 'image') {
-      body.innerHTML = `<img src="${url}" alt="${escHtml(f.name)}" />`;
-    } else if (f.type === 'video') {
-      body.innerHTML = `<video controls autoplay src="${url}"></video>`;
-    } else if (f.type === 'audio') {
-      body.innerHTML = `<audio controls src="${url}"></audio>`;
-    } else if (f.type === 'pdf') {
-      body.innerHTML = `<iframe src="${url}"></iframe>`;
-    } else {
-      body.innerHTML = `<div style="text-align:center; color:var(--text-muted)"><div style="font-size:4rem;margin-bottom:16px">${fileIcon(f)}</div><p>${escHtml(f.name)}</p><p style="margin-top:8px">${formatSize(f.size)}</p></div>`;
-    }
+    if (f.type === 'image')     body.innerHTML = `<img src="${url}" alt="${escHtml(f.name)}" />`;
+    else if (f.type === 'video') body.innerHTML = `<video controls autoplay src="${url}"></video>`;
+    else if (f.type === 'audio') body.innerHTML = `<audio controls src="${url}"></audio>`;
+    else if (f.type === 'pdf')   body.innerHTML = `<iframe src="${url}"></iframe>`;
+    else body.innerHTML = `<div style="text-align:center;color:var(--text-muted)"><div style="font-size:4rem;margin-bottom:16px">${fileIcon(f)}</div><p>${escHtml(f.name)}</p><p style="margin-top:8px">${formatSize(f.size)}</p></div>`;
 
     document.getElementById('modal-download-btn').onclick = () => downloadFile(f.name);
     document.getElementById('modal-delete-btn').onclick = () => { closeModalDirect(); deleteFile(f.name); };
     document.getElementById('modal').classList.add('open');
   }
 
-  function closeModal(e) {
-    if (e.target === document.getElementById('modal')) closeModalDirect();
-  }
+  function closeModal(e) { if (e.target === document.getElementById('modal')) closeModalDirect(); }
   function closeModalDirect() {
     document.getElementById('modal').classList.remove('open');
     document.getElementById('modal-body').innerHTML = '';
     activeFile = null;
   }
 
-  // ── Download ──
+  // ── Download / Delete ──
   function downloadFile(name) {
+    const fp = folderPath();
     const a = document.createElement('a');
-    a.href = `/api/download/${encodeURIComponent(name)}`;
+    a.href = `/api/download/${encodeURIComponent(name)}` + (fp ? `?folder=${encodeURIComponent(fp)}` : '');
     a.download = name;
     a.click();
   }
 
-  // ── Delete ──
   async function deleteFile(name) {
     if (!confirm(`Delete "${name}"?`)) return;
+    const fp = folderPath();
     try {
-      const res = await fetch(`/api/files/${encodeURIComponent(name)}`, { method: 'DELETE' });
+      const res = await fetch(`/api/files/${encodeURIComponent(name)}` + (fp ? `?folder=${encodeURIComponent(fp)}` : ''), { method: 'DELETE' });
       if (res.ok) {
         toast('Deleted: ' + name, 'success');
-        files = files.filter(f => f.name !== name);
+        entries.files = entries.files.filter(f => f.name !== name);
         render();
       } else {
         toast('Delete failed', 'error');
       }
-    } catch {
-      toast('Delete failed', 'error');
-    }
+    } catch { toast('Delete failed', 'error'); }
+  }
+
+  async function deleteFolder(name) {
+    if (!confirm(`Delete folder "${name}" and all its contents?`)) return;
+    const rel = [...currentFolder, name].join('/');
+    try {
+      const res = await fetch(`/api/folders?path=${encodeURIComponent(rel)}`, { method: 'DELETE' });
+      if (res.ok) {
+        toast('Deleted folder: ' + name, 'success');
+        entries.folders = entries.folders.filter(f => f.name !== name);
+        render();
+      } else {
+        const data = await res.json();
+        toast(data.error || 'Delete failed', 'error');
+      }
+    } catch { toast('Delete failed', 'error'); }
   }
 
   // ── Filters & View ──
@@ -727,10 +828,14 @@
     render();
   }
 
-  // ── Utilities ──
+  // ── Helpers ──
+  function previewUrl(name) {
+    const fp = folderPath();
+    return `/api/preview/${encodeURIComponent(name)}` + (fp ? `?folder=${encodeURIComponent(fp)}` : '');
+  }
+
   function fileIcon(f) {
-    const icons = { image: '🖼️', video: '🎬', audio: '🎵', pdf: '📕', text: '📝', other: '📄' };
-    return icons[f.type] || '📄';
+    return { image:'🖼️', video:'🎬', audio:'🎵', pdf:'📕', text:'📝', other:'📄' }[f.type] || '📄';
   }
 
   function formatSize(bytes) {
@@ -741,16 +846,15 @@
   }
 
   function formatDate(mtime) {
-    const d = new Date(mtime);
-    return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+    return new Date(mtime).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
   function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
   function escJs(s) {
-    return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   }
 
   function toast(msg, type = 'success') {
@@ -761,9 +865,8 @@
     setTimeout(() => el.remove(), 3500);
   }
 
-  // Keyboard shortcuts
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModalDirect();
+    if (e.key === 'Escape') { closeModalDirect(); closeFolderDialogDirect(); }
   });
 </script>
 </body>
