@@ -4,6 +4,7 @@
   "description": "Personal local network file sharing platform",
   "main": "server.js",
   "scripts": {
+    "prestart": "npm install",
     "start": "node server.js",
     "dev": "node server.js"
   },
